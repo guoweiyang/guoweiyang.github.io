@@ -1,0 +1,230 @@
+
+* {
+}
+
+body {
+  top: 0px; 
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  height: 100%;
+  margin: auto;
+  font-family: Georgia,serif;
+  width:1051px;
+  width:820px;
+  /* background-color: white; */
+  background-color: lightgrey;
+}
+#innerbody {
+  background-color: white;
+  border: 50px solid white;
+}
+
+h1 {
+  margin: 0;
+  padding: 20px 20px 20px 20px;
+  font-size: 25px;
+}
+
+h1, h1 * {
+  background-color: maroon;
+  color: white;
+  text-decoration: none;
+}
+
+
+h2 {
+  padding: 2px 2px;
+  margin: 20px 10px;
+  font-size: 20px;
+}
+
+h2, h2 * {
+  background-color: #f0f0f0;
+  color: maroon;
+}
+
+h3 {
+  border-bottom: solid #f0f0f0 1px;
+  margin: 20px 40px 10px 40px;
+  background-color: white;
+  color: maroon;
+  font-size: 16px;
+}
+
+h3, h3 * {
+  text-decoration: none;
+}
+
+h4 {
+  margin: 10px 40px;
+}
+
+pre {
+	MARGIN: 10px 120px
+}
+
+
+.menu {
+  display: block;
+  margin: 0;
+  padding: 3px 0 3px 25px;
+  border-bottom: solid black 1px;
+  border-top: solid #cc6600 1px;
+}
+
+.menu, .menu * {
+  background-color: #dd7700;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+  padding: 3px 5px 3px 5px;
+  margin: 0 5px 0 0
+}
+
+.menu a:hover, .menu a:active {
+  background-color: maroon;
+  color: inherit;
+}
+
+
+.footer {
+  background-color: maroon;
+  color: white;
+  border-top: solid black 1px;
+  margin: 20px 0 0 0;
+  padding: 10px 15px 50px 15px;
+  text-align: center;
+}
+.footer a {
+  background-color: inherit;
+  color: white;
+}
+.code {
+  COLOR: #0000ff; 
+  FONT-SIZE: 10.00pt; 
+  MARGIN-LEFT: 100.0pt; 
+  MARGIN-RIGHT: 400.0pt; 
+  WHITE-SPACE: pre;
+}
+
+p {
+  margin: 10px 40px;
+  padding 0;
+}
+
+ul, ol {
+  padding: 0px 0px 0px 20px;
+  margin: 10px 40px;
+}
+
+li { 
+  padding: 0;
+  margin: 10px 0;
+} 
+
+ul ul, ol ol {
+  margin: 10px;
+}
+
+pre {
+  margin: 10px 120px;
+}
+
+image {
+  margin: 10px 120px;
+}
+
+table {
+  margin: 0px 120px;
+  border: solid 1px maroon;
+  border-collapse: collapse;
+}
+
+table.image { 
+  margin-left: 4em; 
+}
+
+th {
+  margin: 0px;
+  border-bottom: solid 1px maroon;
+}
+
+td, th {
+  padding: 3px 10px;
+}
+
+td.caption { 
+  text-align: center;
+}
+
+colgroup.checkcolumn {
+  border-left: solid 1px maroon;
+}
+
+dl {
+  margin: 10px 120px;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 5px 30px 10px 30px;
+}
+
+.welcome {
+  margin: 40px 10px;
+}
+
+.paperinfo {
+  margin: 0px 45px;
+  padding: 0;
+}
+
+blockquote, .abstract {
+  font-style: italic;
+  margin: 10px 50px;
+  text-align: justify;
+}
+
+blockquote em, .abstract em {
+  font-style: normal;
+}
+
+.paperdownloads {
+  margin: 0 40px;
+  padding: 0;
+  list-style: none;
+}
+
+.paperdownloads li {
+  display: inline;
+}
+
+.rightpic {
+  float: right;
+  margin: 10px 50px 10px 10px;
+  clear: both;
+  border: solid black 1px;
+}
+
+.disclaimer {
+  font-size: 12px;
+}
+
+#update-site-link {
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 12px;
+  display: block;
+  margin: 10px 0 10px 30px;
+}

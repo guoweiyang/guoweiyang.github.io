@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="style.css">
+  <title>Memoise: A Tool for Memoized Symbolic Execution</title>
+</head>
+
+
+<body>
+ <div id="innerbody">
+
+
+<h1><a href="http://cs.txstate.edu/~g_y10/memoise">Memoise: A Tool for Memoized Symbolic Execution</a></h1>
+
+<p class="welcome">
+Memoise is a tool that supports memoized symbolic execution. It uses a trie-based data structure that stores the key elements of a run of symbolic execution. By maintaining the trie, it reuses previously computed results of symbolic execution during successive runs, without the need for re-computing them as is traditionally done. </p>
+
+<H2><a name="publications">Publications</a></H2>
+
+<h3>Memoise: A Tool for Memoized Symbolic Execution</h3>
+<p class="paperinfo">
+  By <a href="http://cs.txstate.edu/~g_y10/">Guowei Yang</a>, 
+     <a href="http://users.ece.utexas.edu/~khurshid/">Sarfraz Khurshid</a>
+     and <a href="http://ti.arc.nasa.gov/profile/pcorina/">Corina S. Pasareanu</a><br> 
+     <i>35th International Conference on Software Engineering, Formal Demonstrations Track </i><br>
+     pages 1343--1346, San Francisco, CA, May 2013. [<a href="../publications/YangETAL13MemoiseTool.pdf">PDF</a>]
+</p>
+
+<h3>Memoized Symbolic Execution</h3>
+<p class="paperinfo">
+  By <a href="http://cs.txstate.edu/~g_y10/">Guowei Yang</a>, 
+     <a href="http://ti.arc.nasa.gov/profile/pcorina/">Corina S. Pasareanu</a>, 
+     and <a href="http://users.ece.utexas.edu/~khurshid/">Sarfraz Khurshid</a><br>
+     <i>International Symposium on Software Testing and Analysis</i><br>
+     pages 144--154, Minneapolis, Minnesota, USA, July, 2012. [<a href="../publications/YangETAL12Memoise.pdf">PDF</a>]
+</p>
+
+<H2>Download</H2>
+<ul>
+<li> Download Java PathFinder core (jpf-core) from the
+<a href="http://babelfish.arc.nasa.gov/trac/jpf/wiki/install/start">JPF
+website</a>. The following are assuming that you install your JPF projects
+under ~/projects/jpf:
+
+<pre>mkdir ~/projects/jpf
+cd ~/projects/jpf
+hg clone http://babelfish.arc.nasa.gov/hg/jpf/jpf-core
+</pre>
+
+<li> Download Symbolic PathFinderd (jpf-symbc) from the JPF repository.
+
+<pre>mkdir ~/projects/jpf
+cd ~/projects/jpf
+hg clone http://babelfish.arc.nasa.gov/hg/jpf/jpf-symbc
+</pre>
+
+
+<li> Download <a href="downloads/jpf-memoise.zip">Memoise</a> (jpf-memoise),  extract it and put it in ~/projects/jpf.
+
+<!-- <pre>mkdir ~/projects/jpf -->
+<!-- cd ~/projects/jpf -->
+<!-- hg clone http://babelfish.arc.nasa.gov/hg/jpf/jpf-memoise -->
+<!-- </pre> -->
+
+
+</ul>
+ 
+<H2>Build</H2>
+<ul>
+
+<li> Before building your projects, create a site.properties file in your ~/.jpf
+directory, and configure the file as instructed in the installation
+instructions. Assuming that you installed your JPF projects
+under ~/projects/jpf, your site.properties should look like this:
+
+<pre>jpf.home = ${user.home}/projects/jpf
+jpf-core = ${jpf.home}/jpf-core
+jpf-symbc = ${jpf.home}/jpf-symbc
+jpf-memoise = ${jpf.home}/jpf-memoise
+extensions=${jpf-core},${jpf-symbc},${jpf-memoise}
+</pre>
+
+
+<li> Build projects jpf-core, jpf-symbc. For now, the class files required are
+ already in jpf-memoise project, and there's no need to re-build jpf-memoise.
+
+<!-- <pre>cd ~/projects/jpf/jpf-core -->
+<!-- ant -->
+<!-- cd ~/projects/jpf/jpf-symbc -->
+<!-- ant -->
+<!-- cd ~/projects/jpf/jpf-memoise -->
+<!-- ant -->
+<!-- </pre> -->
+
+</ul>
+
+<H2>Run</H2>
+<p>We envision many applications that can be optimized using memoized symbolic
+execution. For now our implementation of Memoise supports three
+representative applications: iterative deepening, regression analysis, and
+heuristics-guided symbolic execution.  Here, we use iterative deepening as an
+example to illustrate how to use of Memoise. </p>
+
+<p>First, an initial run of Memoise builds the trie on-the-fly and saves it on
+the disk for future re-use. The following shows an example .jpf configuration: </p>
+
+<pre>
+target=Ex
+classpath=${jpf-memoise}/build/examples
+symbolic.method=Ex.m(sym#sym#sym)
+search.depth_limit=6
+listener=gov.nasa.jpf.memoise.listener.TrieBuilder
+memoise.new_trie_name=trie_ex.dat
+</pre>
+
+<p>Same as other .jpf configurations used for running symbolic execution with
+Symbolic PathFinder, this configuration specifies the target class and its
+classpath, the method which is intended to be executed symbolically, and search
+depth bound in the first four lines. The fifth line specifies the TrieBuilder
+listener which builds the trie on the fly and stores the trie to the disk.  The
+last line specifies the name of trie.</p>
+
+<p>After running Memoise, a trie like the following is generated:</p>
+
+<pre>
+<table class="image">
+<tr><td><img src="pics/trie_ex.jpeg" width="450"></td></tr>
+<tr><td class="caption">Figure 1, Initial Trie.</td></tr>
+</table>
+</pre>
+
+<p>The grey node in Figure 1 is an unsatisfiable node due to the unsatisfiable
+path condition, and the two pink nodes are leaf nodes because of the chosen
+depth bound.</p>
+
+<p>Now, suppose the user would like to increase the depth bound to check more
+behaviors. The following is the configuration using Memoise:</p>
+
+<pre>
+target=Ex
+classpath=${jpf-memoise}/build/examples
+search.depth_limit=7
+symbolic.method=Ex.m(sym#sym#sym)
+listener=gov.nasa.jpf.memoise.listener.IDListener
+memoise.old_trie_name=trie_ex.dat
+memoise.new_trie_name=trie_ex_new.dat
+</pre>
+
+<p>Here, the listener IDListener_p is applied. It guides symbolic execution to
+explore the new parts because of the increased depth bound, and updates the trie
+accordingly. The last two lines specify the name of the trie for reuse and the
+name of the updated trie, respectively. 
+
+<p>After running Memoise, an updated trie like the following is generated:</p>
+
+<pre>
+<table class="image">
+<tr><td><img src="pics/trie_ex_new.jpeg" width="450"></td></tr>
+<tr><td class="caption">Figure 2, Updated Trie.</td></tr>
+</table>
+</pre>
+
+<p>Figure 2 shows that only nodes (paths) highlighted in red color are explored
+guided by the old trie, The others that also exist in the old trie are just
+pruned during the search. The two new boundary nodes are generated because of
+the increased depth bound, and thereby the tire is updated.
+</p>
+
+<H2><a name="programs">Example Programs</a></H2>
+
+<p>
+The following six example programs are used in the experiments we conducted
+to evaluate our proposed approach, with respect to the time and memory cost
+incurred by building, storing and retrieving the trie and the savings that can
+be achieved with Memoise.</p>
+
+<h3>1. Loops</h3>
+<p><a href="downloads/Loops.zip">download</a></p>
+     
+<p>Looping programs pose particular challenges to symbolic execution and handling
+them efficiently is an active area of research. </p>
+
+<p>The LoopExample.java has been used in previous work on loop analysis, where
+test inputs are generated to exercise the two specific statements.
+The TwoLoopExample.java is similar, except that the part after the first loop is
+another loop, instead of a simple conditional statement. </p>
+
+
+<h3>2. BankAccount</h3>
+<p><a href="downloads/BankAccount.zip">download</a></p>
+
+<p>The bank account example has been used previously to illustrate method
+sequence generation using symbolic execution and evolutionary testing. The
+example implements a bank account service. </p>
+     
+
+<h3>3. WBS</h3> 
+<p><a href="downloads/WBS.zip">download</a></p>
+
+<p>Wheel Brake System (WBS) is a synchronous reactive component from
+the automotive domain. This method determines how much braking pressure to apply
+based on the environment. The Java model is based on a Simulink model derived
+from the WBS case example found in ARP 4761. The Simulink model was
+translated to C using tools developed at Rockwell Collins and manually
+translated to Java. It consists of one class and 231 lines of code. </p>
+
+<h3>4. TCAS</h3> 
+<p><a href="downloads/TCAS.zip">download</a></p>
+
+<p>Traffic Anti-Collision Avoidance System (TCAS) is a system to avoid air
+collisions. Its code in C together with 41 mutants are available at SIR
+repository. We manually converted the code to Java. The Java version has 143
+lines of code. </p>
+
+<p>The original version v0 and three randomly selected mutant versions v6, v25,
+and v30 are used in our study. Compared to the original version v0, version v6
+has an operator change from “<” to “<=”, v25 has an operator change, and v30 has
+a return value change.</p>
+
+
+<h3>5. MerArbiter</h3> 
+<p><a href="downloads/MerArbiter.zip">download</a></p>
+
+<p>MerArbiter models a component of the flight software for NASA JPL’s Mars
+Exploration Rovers (MER). The analyzed software consists of a Resource Arbiter
+and several user components. Each user serves one specific application, such as
+imaging, controlling the robot arm, communicating with earth, and driving. The
+arbiter module moderates access to several shared resources. It prevents
+potential conflicts between resource requests coming from different users and
+it enforces priorities. For example, it does not make sense to start a
+communication session with Earth while the rover is driving. </p>
+
+<p>MerArbiter has been modeled in Simulink/Stateflow and it was automatically
+translated into Java using the Polyglot framework. The configuration for our
+analysis involved two users and five resources. The example has 268 classes,
+553 methods, 4697 lines of code (including the Java Polyglot execution
+framework). </p>
+
+<p>There were no version histories available for MerArbiter. We randomly picked
+two methods from the original version v0, and manually introduced the
+changes. Version v1 has a change to the return value in the method guard of
+class Transition300, and version v2 has an operator change from “==” to “! =” in
+the method guard of class Transition186. </p>
+
+
+<h3>6. Apollo</h3>
+<p><a href="downloads/Apollo.zip">download</a></p>
+
+<p>The Apollo Lunar Autopilot is a Simulink model that was automatically
+translated to Java. The translated Java code has 2.6 KLOC in 54 classes. The
+Simulink model was created by an engineer working on the Apollo Lunar Module
+digital autopilot design team. The goal was to study how the model could have
+been designed in Simulink, if it had been available in 1961. The model is
+available from MathWorks6. It contains both Simulink blocks and Stateflow
+diagrams and makes use of complex Math functions (e.g. Math.sqrt). The code has
+been analyzed before using Symbolic Pathfinder with the Coral solver. </p>
+
+<br>
+<br>
+
+<div class="footer">
+Please send bug reports, comments, or questions to <a href="mailto:gyang@txstate.edu">Guowei Yang</a>.
+
+<p class="disclaimer">
+This material is based upon work partially supported by the NSF Grant
+CCF-0845628, AFOSR Grant FA9550-09-1-0351, and Google Summer of Code 2011. Any
+opinions, findings and conclusions or recommendations expressed in this material
+are those of the author(s) and do not necessarily reflect the views of the NSF
+,AFOSR, or Google.
+</p>
+
+</div>
+
+</body>
+</html>
+
+

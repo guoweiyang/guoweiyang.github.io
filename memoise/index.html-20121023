@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <base href="https://hostdb.ece.utexas.edu/~gyang/memoise/" />
+  <style type="text/css" media="screen">
+    @import url( style.css );
+  </style>
+
+  <title>Memoise: A Tool for Memoized Symbolic Execution</title>
+</head>
+
+<body>
+
+<h1><a href="https://hostdb.ece.utexas.edu/~gyang/memoise">Memoise: A Tool for Memoized Symbolic Execution</a></h1>
+
+<p class="welcome">
+Memoise is a tool that supports memoized symbolic execution. It uses a trie-based data structure that stores the key elements of a run of symbolic execution. By maintaining the trie, it re-uses previously computed results of symbolic execution during successive runs, without the need for re-computing them as is traditionally done. </p>
+
+<H2><a name="publications">Publications</a></H2>
+
+<h3>Memoized Symbolic Execution</h3>
+<p class="paperinfo">
+  By <a href="https://hostdb.ece.utexas.edu/~gyang/">Guowei Yang</a>, 
+     <a href="http://ti.arc.nasa.gov/profile/pcorina/">Corina S. Pasareanu</a>, 
+     and <a href="http://users.ece.utexas.edu/~khurshid/">Sarfraz Khurshid</a><br>
+     <i>International Symposium on Software Testing and Analysis</i><br>
+     pages 144--154, Minneapolis, Minnesota, USA, July, 2012. [<a href="http://dl.acm.org/citation.cfm?id=2336771">Download</a>]
+</p>
+
+<H2>Download</H2>
+<p>...</p>
+ 
+<H2>Build</H2>
+<p>...</p>
+
+<H2>Run</H2>
+<p>...</p>
+
+<H2>Example</H2>
+<p>...</p>
+
+
+
+<H2><a name="programs">Example Programs</a></H2>
+
+<p>
+The following six example programs are used in the experiments we conducted
+to evaluate our proposed approach, with respect to the time and memory cost
+incurred by building, storing and retrieving the trie and the savings that can
+be achieved with Memoise.</p>
+
+<h3>1. Loops</h3>
+<p><a href="downloads/Loops.zip">download</a></p>
+     
+<p>Looping programs pose particular challenges to symbolic execution and handling
+them efficiently is an active area of research. </p>
+
+<p>The LoopExample.java has been used in previous work on loop analysis [1], where
+test inputs are generated to exercise the two specific statements.
+The TwoLoopExample.java is similar, except that the part after the first loop is
+another loop, instead of a simple conditional statement. </p>
+
+
+<h3>2. BankAccount</h3>
+<p><a href="downloads/BankAccount.zip">download</a></p>
+
+<p>The bank account example has been used in [2] to illustrate method
+sequence generation using symbolic execution and evolutionary testing. The
+example implements a bank account service. </p>
+     
+
+<h3>3. WBS</h3> 
+<p><a href="downloads/WBS.zip">download</a></p>
+
+<p>Wheel Brake System (WBS) is a synchronous reactive component from
+the automotive domain. This method determines how much braking pressure to apply
+based on the environment. The Java model is based on a Simulink model derived
+from the WBS case example found in ARP 4761 [3, 4]. The Simulink model was
+translated to C using tools developed at Rockwell Collins and manually
+translated to Java. It consists of one class and 231 lines of code. </p>
+
+<h3>4. TCAS</h3> 
+<p><a href="downloads/TCAS.zip">download</a></p>
+
+<p>Traffic Anti-Collision Avoidance System (TCAS) is a system to avoid air
+collisions. Its code in C together with 41 mutants are available at SIR
+repository [5]. We manually converted the code to Java. The Java version has 143
+lines of code. </p>
+
+<p>The original version v0 and three randomly selected mutant versions v6, v25,
+and v30 are used in our study. Compared to the original version v0, version v6
+has an operator change from “<” to “<=”, v25 has an operator change, and v30 has
+a return value change.</p>
+
+
+<h3>5. MerArbiter</h3> 
+<p><a href="downloads/MerArbiter.zip">download</a></p>
+
+<p>MerArbiter models a component of the flight software for NASA JPL’s Mars
+Exploration Rovers (MER). The analyzed software consists of a Resource Arbiter
+and several user components. Each user serves one specific application, such as
+imaging, controlling the robot arm, communicating with earth, and driving. The
+arbiter module moderates access to several shared resources. It prevents
+potential conflicts between resource requests coming from different users and
+it enforces priorities. For example, it does not make sense to start a
+communication session with Earth while the rover is driving. </p>
+
+<p>MerArbiter has been modeled in Simulink/Stateflow and it was automatically
+translated into Java using the Polyglot framework [6]. The configuration for our
+analysis involved two users and five resources. The example has 268 classes,
+553 methods, 4697 lines of code (including the Java Polyglot execution
+framework). </p>
+
+<p>There were no version histories available for MerArbiter. We randomly picked
+two methods from the original version v0, and manually introduced the
+changes. Version v1 has a change to the return value in the method guard of
+class Transition300, and version v2 has an operator change from “==” to “! =” in
+the method guard of class Transition186. </p>
+
+
+<h3>6. Apollo</h3>
+<p><a href="downloads/Apollo.zip">download</a></p>
+
+<p>The Apollo Lunar Autopilot is a Simulink model that was automatically
+translated to Java. The translated Java code has 2.6 KLOC in 54 classes. The
+Simulink model was created by an engineer working on the Apollo Lunar Module
+digital autopilot design team. The goal was to study how the model could have
+been designed in Simulink, if it had been available in 1961. The model is
+available from MathWorks6. It contains both Simulink blocks and Stateflow
+diagrams and makes use of complex Math functions (e.g. Math.sqrt). The code has
+been analyzed before using Symbolic Pathfinder with the Coral solver [7]. </p>
+
+<br>
+<br>
+
+<H2><a name="programs">References</a></H2>
+
+<ol>
+<li>P. Godefroid and D. Luchaup. Automatic partial loop summarization in dynamic test generation. In ISSTA, pages 23–33, 2011.</li> 
+
+<li>K. Inkumsah and T. Xie. Improving structural testing of object-oriented programs via integrating evolutionary testing and symbolic execution. In ASE, pages 297–306, 2008.</li> 
+ 
+<li>SAE-ARP4761. Guidelines and Methods for Conducting the Safety Assessment Process on Civil Airborne Systems and Equipment. SAE International, December 1996.</li>
+
+<li>A. Joshi and M. Heimdahl. Model-Based Safety Analysis of Simulink Models Using SCADE Design Verifier. In SAFECOMP, volume 3688 of LNCS, pages 122–135, September 2005.</li>
+
+<li>SIR Repository. http://sir.unl.edu.</li>
+
+<li>D. Balasubramanian, C. S. Pasareanu, M. W. Whalen,
+G. Karsai, and M. R. Lowry. Polyglot: modeling and analysis for multiple statechart formalisms. In ISSTA, pages 45–55, 2011.</li>
+
+<li>M. Souza, M. Borges, M. d'Amorim, and C. S. Pasareanu. Coral: solving complex constraints for symbolic pathfinder. In NFM, pages 359–374, 2011.</li>
+</ol>
+
+
+<p class="disclaimer">
+<!-- This material is based upon work partially supported by the National Science Foundation (NSF) under Grant Nos. CNS-0958231, CNS-0958199, CCF-0845628, CCF-0746856, IIS-0438967, and AFOSR grant FA9550-09-1-0351. Any opinions, findings and conclusions or recommendations expressed in
+this material are those of the author(s) and do not necessarily reflect
+the views of the NSF or AFOSR. <!-->
+</p>
+
+</div>
+
+</body>
+</html>
+
+
