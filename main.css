@@ -19,17 +19,17 @@ body {
     overflow: auto;
 }*/
 
-#innerbody {
+.innerbody {
     background-color: white;
     border: 25px solid white;
 }
-#title {
+.title {
     font-size: 24pt;
     padding: 10px;
     text-align: center;
     color: maroon;
 }
-#subtitle {
+.subtitle {
     font-size: 18pt;
     text-align: center;
     color: maroon;
