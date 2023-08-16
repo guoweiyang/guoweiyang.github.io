@@ -22,14 +22,12 @@ body {
     .page-header {
         flex: none; /* fixed size */
     background-color: white;
-    border: 25px solid white;
     width: 75%;
     margin: auto;
     }
 .innerbody {
     flex: 1 1 auto;
     background-color: white;
-    border: 25px solid white;
     width: 75%;
     overflow: auto;
     margin: auto;
