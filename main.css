@@ -6,22 +6,26 @@ body {
     height: 100%;
     margin: auto;
     font-family: Georgia, serif;
-    width: 1051px;
-    /* width: 820px; */
-    width: 833px;
+    width: 100%;
+    /*width: 1051px;*/
+    /*width: 833px;*/
     /* background-color: white; */
     background-color: lightgrey;
 }
-/*.flex-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: auto;
-}*/
+    .flex-master {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 100%;
+        overflow: auto;
+    }
 
 .innerbody {
+    flex: 1 1 auto;
     background-color: white;
     border: 25px solid white;
+    width: 80%;
+
 }
 .title {
     font-size: 24pt;
