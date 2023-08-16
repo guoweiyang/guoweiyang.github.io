@@ -24,8 +24,9 @@ body {
     flex: 1 1 auto;
     background-color: white;
     border: 25px solid white;
-    width: 80%;
-    margin: 0 auto;
+    width: 90%;
+    overflow: auto;
+    margin: auto;
 }
 
 .title {
