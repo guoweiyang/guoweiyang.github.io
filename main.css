@@ -24,7 +24,7 @@ body {
     flex: 1 1 auto;
     background-color: white;
     border: 25px solid white;
-    width: 90%;
+    width: 75%;
     overflow: auto;
     margin: auto;
 }
