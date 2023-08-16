@@ -25,7 +25,8 @@ body {
     background-color: white;
     border: 25px solid white;
     width: 80%;
-    float: center;
+    left: 10%;
+    right: 10%;
 }
 .title {
     font-size: 24pt;
