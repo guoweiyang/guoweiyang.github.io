@@ -34,17 +34,17 @@ body {
     text-align: center;
     color: maroon;
 }
-#subtitle2 {
+.subtitle2 {
     font-size: 14pt;
     text-align: center;
     color: maroon;
 }
-#heading {
+.heading {
     font-size: 16pt;
     padding: 10px 0px 10px 0px;
     color: maroon;
 }
-#schedule {
+.schedule {
     border: 1px solid black;
     width: 100%;
 }
