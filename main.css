@@ -25,9 +25,9 @@ body {
     background-color: white;
     border: 25px solid white;
     width: 80%;
-    left: 10%;
-    right: 10%;
+    margin: 0 auto;
 }
+
 .title {
     font-size: 24pt;
     padding: 10px;
