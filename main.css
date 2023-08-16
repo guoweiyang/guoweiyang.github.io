@@ -12,12 +12,12 @@ body {
     /* background-color: white; */
     background-color: lightgrey;
 }
-.flex-container {
+/*.flex-container {
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: auto;
-}
+}*/
 
 #innerbody {
     background-color: white;
