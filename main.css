@@ -9,8 +9,8 @@ body {
     width: 100%;
     /*width: 1051px;*/
     /*width: 833px;*/
-    /* background-color: white; */
-    background-color: lightgrey;
+    background-color: white; 
+    /*background-color: lightgrey;*/
 }
     .flex-master {
         display: flex;
