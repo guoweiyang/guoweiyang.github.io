@@ -121,3 +121,9 @@ ul#nav li a:hover {
     background: #abc0d6;
     color: #000066;
 }
+
+/* News dates */
+.news-date {
+    color: #666;
+    font-weight: bold;
+}
