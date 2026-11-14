@@ -13,6 +13,31 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="main.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+/* Header only: does not change the rest of the site's styling. */
+.profile-header { display: flex; align-items: flex-start; gap: 24px; margin: 20px 0 26px; }
+.profile-photo { flex: 0 0 180px; }
+.profile-photo img { display: block; width: 180px; height: 220px; border-radius: 15px; object-fit: cover; }
+.profile-details { flex: 0 0 285px; min-width: 0; overflow-wrap: anywhere; line-height: 1.35; }
+.profile-details h1 { margin: 0 0 12px; font-size: 1.65em; line-height: 1.15; }
+.profile-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 16px; }
+.profile-links a { display: inline-block; margin-right: 0 !important; }
+.profile-links img { display: block; }
+.profile-bio { flex: 1 1 0; min-width: 0; line-height: 1.4; }
+.profile-bio p { margin: 0; }
+@media (max-width: 900px) {
+  .profile-header { flex-wrap: wrap; gap: 20px; }
+  .profile-details { flex: 1 1 270px; }
+  .profile-bio { flex: 1 1 100%; }
+}
+@media (max-width: 520px) {
+  .profile-header { gap: 16px; }
+  .profile-photo { flex-basis: 135px; }
+  .profile-photo img { width: 135px; height: 165px; }
+  .profile-details { flex: 1 1 160px; }
+  .profile-details h1 { font-size: 1.35em; }
+}
+</style>
 </head>
 
    <div class="innerbody">
@@ -34,23 +59,19 @@
     
         <hr/>
         
-          <table border="0" cellspacing="0" cellpadding="10" width="100%">
-            <tbody>
-              <tr valign="top">
-                <!-- Profile photo -->
-                <td width="15%">
-                  <img src="guowei.jpg" alt="Guowei Yang's image" width="180" height="220"
-                       style="border-radius: 15px; object-fit: cover;">
-                </td>
-                <!-- Contact and academic information -->
-                <td width="25%">
-                  <h1>Guowei Yang</h1>
-                  Senior Lecturer (U.S. Associate Professor)<br/>
-                  <a href="http://www.eecs.uq.edu.au">School of Electrical Engineering and Computer Science</a><br/>
-                  <a href="http://www.eait.uq.edu.au">Faculty of Engineering, Architecture and Information Technology</a><br/>
-                  <a href="https://www.uq.edu.au">The University of Queensland</a><br/>
-                  Email: <a href="mailto:guowei.yang@uq.edu.au">guowei.yang@uq.edu.au</a>
-                  <p>
+          <!-- Responsive profile header: fixed photo and contact widths, flexible bio -->
+          <div class="profile-header">
+            <div class="profile-photo">
+              <img src="guowei.jpg" alt="Guowei Yang" width="180" height="220">
+            </div>
+            <div class="profile-details">
+              <h1>Guowei Yang</h1>
+              <div>Senior Lecturer (U.S. Associate Professor)</div>
+              <a href="http://www.eecs.uq.edu.au">School of Electrical Engineering and Computer Science</a><br/>
+              <a href="http://www.eait.uq.edu.au">Faculty of Engineering, Architecture and Information Technology</a><br/>
+              <a href="https://www.uq.edu.au">The University of Queensland</a><br/>
+              Email: <a href="mailto:guowei.yang@uq.edu.au">guowei.yang@uq.edu.au</a>
+              <div class="profile-links">
 <a href="https://dblp.org/pid/43/3366-1.html" target="_blank"
    rel="noopener noreferrer" style="margin-right: 12px;">
     <img src="https://cdn.simpleicons.org/dblp"
@@ -79,15 +100,12 @@
 </a>
 
 
-                  </p>
-                </td>
-                <!-- Short bio, top right -->
-                <td width="60%">
-                  <p style="margin-top: 0;">Guowei Yang is a Senior Lecturer (equivalent to U.S. Associate Professor) in the <a href="http://www.eecs.uq.edu.au/">School of Electrical Engineering and Computer Science</a> at <a href="https://uq.edu.au/">The University of Queensland</a>, Australia. His research interests lie in Software Engineering, and its synergy with Machine Learning and Programming Languages, with a focus on improving reliability and security of software and machine learning systems. He received his Ph.D. from <a href="http://www.utexas.edu">The University of Texas at Austin</a> in 2013. He is an IEEE Senior Member and an ACM Senior Member.</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              </div>
+            </div>
+            <div class="profile-bio">
+              <p>Guowei Yang is a Senior Lecturer (equivalent to U.S. Associate Professor) in the <a href="http://www.eecs.uq.edu.au/">School of Electrical Engineering and Computer Science</a> at <a href="https://uq.edu.au/">The University of Queensland</a>, Australia. His research interests lie in Software Engineering, and its synergy with Machine Learning and Programming Languages, with a focus on improving reliability and security of software and machine learning systems. He received his Ph.D. from <a href="http://www.utexas.edu">The University of Texas at Austin</a> in 2013. He is an IEEE Senior Member and an ACM Senior Member.</p>
+            </div>
+          </div>
 
     <!-- </div> -->
 
